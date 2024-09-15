@@ -3,7 +3,7 @@ using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.extensions
+namespace API.Extensions
 {
     public static class ApplicationServiceExtensions
     {
