@@ -15,6 +15,7 @@ import { HomeComponent } from "./home/home.component";
 })
 export class AppComponent implements OnInit {
   private accountService = inject(AccountService);
+  
   ngOnInit(): void {
     this.setCurrentUser();
   }
