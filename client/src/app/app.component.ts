@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     const userString = localStorage.getItem('user');
     if(!userString) return;
     const user = JSON.parse(userString);
+    //alert("I am an alert box!");
     this.accountService.currentUser.set(user);
   }
 
