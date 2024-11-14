@@ -43,7 +43,7 @@ namespace API.Extensions
             result = await userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
 
             if(!result.Succeeded) return BadRequest("Failed to remove from roles");
-
+            
             return Ok( userManager.GetRolesAsync(user));
         }
 

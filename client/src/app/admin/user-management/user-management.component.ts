@@ -38,12 +38,14 @@ export class UserManagementComponent implements OnInit {
           {
           const selectedRoles = this.bsModalRef.content.selectedRoles;
           this.adminService.updateUserRoles(user.username, selectedRoles).subscribe({
-            next: roles => user.roles = roles
+            next: (roles) => {
+              console.log(roles);
+              user.roles = roles;
+            }
           })
         }
       }
     })
-
   }
   getUsersWithRole(){
     this.adminService.getUserWithRoles().subscribe({
