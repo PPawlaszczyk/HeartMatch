@@ -72,21 +72,19 @@ namespace API.Data
 
         public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUserName, string recipientUsername)
         {
-            var messages = await context.Messages
+            var query = context.Messages
                 .Where(x=>x.RecipientUsername == currentUserName && x.RecipientDeleted == false && x.SenderUsername == recipientUsername
                 || x.SenderUsername == currentUserName && x.SenderDeleted == false && x.RecipientUsername == recipientUsername)
                 .OrderBy(x=>x.MessageSent)
-                .ProjectTo<MessageDto>(mapper.ConfigurationProvider)
-                .ToListAsync();
+                .AsQueryable();
             
-            var unreadMessages = messages.Where(x=> x.DateRead == null && x.RecipientUsername == currentUserName).ToList();
+            var unreadMessages = query.Where(x=> x.DateRead == null && x.RecipientUsername == currentUserName).ToList();
 
             if(unreadMessages.Count != 0){
                 unreadMessages.ForEach(x=>x.DateRead = DateTime.UtcNow);
-                await context.SaveChangesAsync();
             }
 
-            return messages;
+            return await query.ProjectTo<MessageDto>(mapper.ConfigurationProvider).ToListAsync();
                 
         }
 

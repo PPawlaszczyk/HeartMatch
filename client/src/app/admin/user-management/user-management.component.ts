@@ -19,7 +19,7 @@ export class UserManagementComponent implements OnInit {
   ngOnInit(): void {
     this.getUsersWithRole();
   }
-  openRolesModal(user: User){
+  openRolesModal(user: User) : void {
     const initialState: ModalOptions = {
       class: 'modal-lg',
       initialState: {
@@ -39,13 +39,12 @@ export class UserManagementComponent implements OnInit {
           const selectedRoles = this.bsModalRef.content.selectedRoles;
           this.adminService.updateUserRoles(user.username, selectedRoles).subscribe({
             next: (roles) => {
-              console.log(roles);
               user.roles = roles;
             }
           })
         }
       }
-    })
+    }) 
   }
   getUsersWithRole(){
     this.adminService.getUserWithRoles().subscribe({

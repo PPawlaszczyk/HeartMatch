@@ -44,7 +44,7 @@ namespace API.Extensions
 
             if(!result.Succeeded) return BadRequest("Failed to remove from roles");
             
-            return Ok( userManager.GetRolesAsync(user));
+            return Ok(await userManager.GetRolesAsync(user));
         }
 
         [Authorize(Policy = "ModeratePhotoRole")]

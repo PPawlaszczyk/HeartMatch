@@ -15,7 +15,7 @@ export class RolesModalComponent {
   availableRoles: string[] = [];
   selectedRoles: string[] = [];
   rolesUpdated = false;
-
+  
   updateChecked(checkedValue:string){
     if(this.selectedRoles.includes(checkedValue)){
       this.selectedRoles = this.selectedRoles.filter( r => r !== checkedValue)
